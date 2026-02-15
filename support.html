@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support Program | Ocean Kalra</title>
+<style>
+  :root {
+    --bg: #f4f9ff;
+    --card: #ffffff;
+    --text: #000000;
+    --accent: #5b7cff;
+    --soft: #eef4ff;
+  }
+  body.dark {
+    --bg: #101522;
+    --card: #1a2033;
+    --text: #ffffff;
+    --soft: #222a44;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  a {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  header {
+    padding: 110px 20px 50px;
+    text-align: center;
+    background: linear-gradient(180deg, #6fa8ff, #dbe9ff);
+  }
+  header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--card);
+    padding: 50px 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+  h2 {
+    color: var(--accent);
+    margin-top: 40px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 8px;
+  }
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background: var(--accent);
+    color: white;
+  }
+  #homeBtn, #themeToggle {
+    position: fixed;
+    top: 20px;
+    z-index: 1000;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  #homeBtn { left: 20px; }
+  #themeToggle { right: 20px; }
+</style>
+</head>
+<body>
+<button id="homeBtn" onclick="window.location.href='index.html'">← Back to Home</button>
+<button id="themeToggle">🌙</button>
+
+<header>
+  <h1>Support Program</h1>
+</header>
+
+<main>
+  <p>If you are unable to pay for a session, you may be eligible for the <strong>Support Program</strong>, which offers a limited number of free advisory sessions each month.</p>
+
+  <h2>Key Details of the Program</h2>
+  <ul>
+    <li>There are 5 free sessions available per month.</li>
+    <li>Each individual may attend only one free session per month.</li>
+    <li>Spots are allocated on a first-come, first-served basis.</li>
+    <li>If you wish to attend additional sessions beyond your free one, payment will be required.</li>
+    <li>To qualify for a free session, you must email <a href="mailto:advisor@oceankalra.com">advisor@oceankalra.com</a> explaining your situation and include the names or contacts of people you have referred to my services.</li>
+    <li>Free sessions are granted after verifying referrals to help sustain and grow the community.</li>
+    <li>If you wish to attend another free session in a subsequent month, you must provide new valid referrals for that month.</li>
+  </ul>
+
+  <p>This program is designed to make advisory support accessible while encouraging the active use of your voice and actions to benefit other people. Your referrals are deeply appreciated and vital to keeping these sessions available.</p>
+
+  <p>Please contact me at <a href="mailto:advisor@oceankalra.com">advisor@oceankalra.com</a> for more information or to apply for the Support Program.</p>
+</main>
+
+<footer>
+  © 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising
+</footer>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  themeToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+    themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  };
+</script>
+</body>
+</html>

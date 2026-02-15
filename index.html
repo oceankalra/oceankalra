@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ocean Kalra | Public Speaking, Psychology & AI Advising</title>
+
+<style>
+:root {
+  --bg: #f4f9ff;
+  --card: #ffffff;
+  --text: #000000;
+  --accent: #5b7cff;
+  --soft: #eef4ff;
+}
+
+body.dark {
+  --bg: #101522;
+  --card: #1a2033;
+  --text: #ffffff;
+  --soft: #222a44;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* Buttons */
+#menuToggle, #themeToggle {
+  position: fixed;
+  top: 20px;
+  z-index: 1001;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#menuToggle { left: 20px; }
+#themeToggle { right: 20px; }
+
+/* Slide deck */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  background: var(--soft);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  z-index: 1000;
+  padding: 80px 20px;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+}
+
+#sideMenu.open { transform: translateX(0); }
+
+#sideMenu a {
+  display: block;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+/* Hero */
+header {
+  background: linear-gradient(180deg, #6fa8ff, #dbe9ff);
+  padding: 120px 20px 60px;
+  text-align: center;
+}
+
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+header h1 {
+  font-size: 50px;
+  background: linear-gradient(90deg, #5b7cff, #ffffff, #5b7cff);
+  background-size: 1000px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.hero-box {
+  background: var(--card);
+  display: inline-block;
+  padding: 20px 30px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* Sections */
+section {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: var(--card);
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 { color: var(--accent); }
+
+/* Services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.service {
+  background: var(--soft);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.service:hover { transform: translateY(-6px); }
+
+.service img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Diagnostic */
+label { display: block; margin-top: 20px; font-weight: bold; }
+input[type=range] { width: 100%; }
+
+/* Booking progress */
+.booking-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.booking-step {
+  flex: 1 1 150px;
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 8px 14px;
+  text-align: center;
+}
+
+.booking-step span {
+  font-weight: bold;
+}
+
+/* Iframe container */
+.iframe-container {
+  margin-top: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+/* Footer */
+.social { text-align: center; margin: 30px 0; }
+.social img { width: 40px; }
+
+footer {
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Small text */
+.hint {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<button id="menuToggle">☰</button>
+<button id="themeToggle">🌙</button>
+
+<nav id="sideMenu">
+  <a href="about.html" target="_blank" rel="noopener">About the Expert ↗</a>
+  <a href="#services">Expert Services</a>
+  <a href="#diagnostic">Diagnostics</a>
+  <a href="blog.html" target="_blank" rel="noopener">Blog ↗</a>
+  <a href="#booking-payment">Book a Session</a>
+  <a href="support.html" target="_blank" rel="noopener">Support Program ↗</a>
+</nav>
+
+<header id="hero">
+  <h1>Ocean Kalra</h1>
+  <div class="hero-box">
+    <p><strong>Public Speaker | AI & Psychology Enthusiast | Expert Advisor</strong></p>
+    <p>Empowering learners, educators & professionals with psychology-based strategies and AI tools</p>
+  </div>
+</header>
+
+<section id="services">
+  <h2>Expert Services</h2>
+
+  <div class="services">
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Public Speaking">
+      <h3>Public Speaking</h3>
+      <p>Engaging presentations to inspire and educate diverse audiences.</p>
+    </div>
+
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Developmental Advising">
+      <h3>Developmental Advising</h3>
+      <p>Psychology-based guidance for learning, motivation, and growth.</p>
+    </div>
+
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Workshops & Talks">
+      <h3>Workshops & Talks</h3>
+      <p>Interactive sessions on public speaking, psychology, AI, and applied learning.</p>
+    </div>
+
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="AI for Learning">
+      <h3>AI for Learning</h3>
+      <p>Practical frameworks to integrate AI effectively.</p>
+    </div>
+
+    <div class="service" style="border: 1px solid silver; padding: 10px; border-radius: 10px;">  
+      <h3>General Advising</h3>  
+      <p>Unsure? Comprehensive guidance tailored to your unique personal and professional goals.</p>  
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="#booking-payment" class="button">
+      Start Booking
+    </a>
+  </div>
+</section>
+
+<section id="diagnostic">
+  <h2>Quick Diagnostic</h2>
+
+  <label>Primary Goal</label>
+  <select id="goal">
+    <option value="learning">Improve learning effectiveness</option>
+    <option value="motivation">Increase motivation & clarity</option>
+    <option value="ai">Use AI more effectively</option>
+  </select>
+
+  <label>Focus Level</label>
+  <input type="range" min="1" max="5" value="3" id="focus">
+
+  <label>Need for Structure</label>
+  <input type="range" min="1" max="5" value="3" id="structure">
+
+  <label>Desired Support Level</label>
+  <input type="range" min="1" max="5" value="3" id="support">
+
+  <p id="recommendation" style="margin-top:25px;font-weight:bold;"></p>
+  <p><strong>Recommended next step:</strong> Book a 1:1 advisory session with/without an advanced diagnostics report.</p>
+</section>
+
+<section id="blog">
+  <h2>Blog</h2>
+  <a class="button" href="blog.html" target="_blank" rel="noopener">
+    Visit Blog
+  </a>
+</section>
+
+<section id="booking-payment">
+  <h2>Book an Advisory Session</h2>
+
+  <!-- Progress overview -->
+  <div class="booking-progress">
+    <div class="booking-step">
+      <span>Step 1 (Optional)</span> – Select Your Service
+    </div>
+    <div class="booking-step">
+      <span>Step 2</span> – Pay & Schedule
+    </div>
+  </div>
+
+  <p>
+    Choose the advisory service that best fits your needs and proceed to payment and scheduling.
+  </p>
+
+  <!-- Service Selection -->
+  <div id="step1" style="margin-top:26px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3>Step 1: Select Your Service</h3>
+
+    <form action="mailto:advisor@oceankalra.com" method="post" enctype="text/plain">
+      <label for="service" style="display:block; margin-top: 20px; font-weight: bold;">Which service are you interested in?</label>
+      <select id="service" name="Selected Service" required style="width: 100%; padding: 8px;">
+        <option value="Public Speaking">Public Speaking</option>
+        <option value="Developmental Advising">Developmental Advising</option>
+        <option value="Workshops & Talks">Workshops & Talks</option>
+        <option value="AI for Learning">AI for Learning</option>
+        <option value="General Advising">General Advising</option>
+      </select>
+
+      <label for="focusArea" style="display:block; margin-top: 20px; font-weight: bold;">What would you like to focus on?</label>
+      <textarea id="focusArea" name="Focus Area" rows="4" placeholder="Briefly describe your goals or topics" style="width: 100%; padding: 8px;" required></textarea>
+
+      <button type="submit" style="margin-top: 20px; background-color: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">Submit</button>
+    </form>
+  </div>
+
+  <!-- Step 2: Payment + Scheduling -->
+  <div id="step2" style="margin-top:34px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3>Step 2: Schedule Your Session</h3>
+    <p>
+      After submitting your service selection, please complete payment and schedule your session using the link below.
+      This combined step simplifies your booking process.
+    </p>
+
+    <a href="https://calendly.com/expert_advisor-ocean/meeting"
+       class="button"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="display: inline-block; text-align: center;">
+      Schedule
+    </a>
+  </div>
+
+  <section id="Support Program">
+  <h2>Unable to pay? Support Alternative:</h2>
+  <a class="button" href="support.html" target="_blank" rel="noopener">
+    Support Program
+  </a>
+</section>
+
+
+  <!-- Contact -->
+  <div style="margin-top:34px; font-size:14px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <p>
+      For confirmation or questions, contact:
+      <br>
+      <strong>
+        <a href="mailto:advisor@oceankalra.com">
+          advisor@oceankalra.com
+        </a>
+      </strong>
+    </p>
+  </div>
+</section><div id="step1" class="availability-request" style="margin-top:26px;">
+    <div class="social">
+  <a href="https://ca.linkedin.com/in/oceankalra" target="_blank" rel="noopener">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+  </a>
+</div>
+
+<footer>© 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising</footer>
+
+<script>
+/* Menu */
+const menu = document.getElementById("sideMenu");
+const menuToggle = document.getElementById("menuToggle");
+const themeToggle = document.getElementById("themeToggle");
+
+menuToggle.onclick = e => {
+  e.stopPropagation();
+  menu.classList.toggle("open");
+};
+document.addEventListener("click", e => {
+  if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+    menu.classList.remove("open");
+  }
+});
+
+/* Theme */
+themeToggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+};
+
+/* Live recommendation */
+const goal = document.getElementById("goal");
+const focus = document.getElementById("focus");
+const structure = document.getElementById("structure");
+const support = document.getElementById("support");
+const rec = document.getElementById("recommendation");
+
+function updateRec() {
+  const avg = (+focus.value + +structure.value + +support.value) / 3;
+  const intensity = avg < 2.5 ? "light guidance" : avg < 4 ? "structured advising" : "high-touch support";
+  const goalText =
+    goal.value === "learning" ? "optimizing learning strategies"
+    : goal.value === "motivation" ? "building sustained motivation"
+    : "integrating AI tools effectively";
+
+  rec.textContent = `Your inputs suggest ${goalText} with ${intensity} would be most effective.`;
+}
+
+[goal, focus, structure, support].forEach(el => el.oninput = updateRec);
+updateRec();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+<!-- SEO -->
+<title>About the Expert | Ocean Kalra</title>
+<meta name="description" content="Learn about Ocean Kalra, an expert advisor working at the intersection of public speaking, psychology, learning science, and artificial intelligence." />
+<meta name="keywords" content="Ocean Kalra, psychological advising, learning science, AI education, developmental advising" />
+<meta name="author" content="Ocean Kalra" />
+
+
+<style>
+:root {
+  --bg: #f4f9ff;
+  --card: #ffffff;
+  --text: #000000;
+  --accent: #5b7cff;
+  --soft: #eef4ff;
+}
+
+
+body.dark {
+  --bg: #101522;
+  --card: #1a2033;
+  --text: #ffffff;
+  --soft: #222a44;
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Buttons */
+#homeBtn,
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  z-index: 1000;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+
+#homeBtn { left: 20px; }
+#themeToggle { right: 20px; }
+
+
+/* Header */
+header {
+  padding: 110px 20px 50px;
+  text-align: center;
+  background: linear-gradient(180deg, #6fa8ff, #dbe9ff);
+}
+
+
+header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+
+header p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+
+/* Main */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--card);
+  padding: 50px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+
+h2 {
+  color: var(--accent);
+  margin-top: 40px;
+}
+
+
+ul {
+  padding-left: 20px;
+}
+
+
+ul li {
+  margin-bottom: 8px;
+}
+
+
+/* CTA */
+.cta {
+  margin-top: 45px;
+  text-align: center;
+}
+
+
+.cta a {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
+}
+</style>
+</head>
+
+
+<body>
+
+
+<button id="homeBtn" onclick="window.location.href='index.html'">← Back to Home</button>
+<button id="themeToggle">🌙</button>
+
+
+<header>
+  <h1>About the Expert</h1>
+  <p>
+    Public Speaking, Psychology, learning science, and AI...brought together to support
+    clear thinking, meaningful learning, and sustainable growth.
+  </p>
+</header>
+
+
+<main>
+ <p><strong>Ocean Kalra</strong> is an expert advisor specializing in public speaking, psychology, learning science, and artificial intelligence. With a strong foundation in academic research and practical experience, Ocean empowers learners, educators, and professionals to develop clearer thinking, effective learning strategies, and ethical AI use.</p>
+
+<p>Ocean's work focuses on how people learn, stay motivated, and make decisions in complex, AI-enhanced environments. The approach prioritizes sustainable, evidence-based strategies that honor cognitive limits and human values.</p>
+
+<h2>Areas of Work</h2>
+<ul>
+  <li><strong>Public Speaking</strong> to inspire and engage diverse audiences.</li>
+  <li><strong>Developmental Advising</strong> for learning and professional growth.</li>
+  <li><strong>Workshops and talks</strong> in academic and professional settings.</li>
+  <li><strong>AI for learning and work</strong>, with an emphasis on clarity and ethical use.</li>
+  <li><strong>General Advising</strong> tailored guidance for personal and professional goals.</li>
+</ul>
+
+<h2>1:1 Advisory Session</h2>
+<p>A 1:1 advisory session is a structured, exploratory conversation focused on understanding your goals, context, and challenges related to learning, development, or AI use.</p>
+
+<p>It is a working conversation designed to create clarity and identify meaningful next steps.</p>
+
+<ul>
+  <li>No extensive preparation required.</li>
+  <li>Brief pre-session questions may be shared.</li>
+  <li>Suitable for students, professionals, educators, and anyone who wants to learn!</li>
+</ul>
+
+
+</main>
+
+
+<footer>
+  © 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising
+</footer>
+
+
+<script>
+const themeToggle = document.getElementById("themeToggle");
+
+
+themeToggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  themeToggle.textContent =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
+};
+</script>
+
+
+</body>
+</html>
