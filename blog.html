@@ -1,142 +1,180 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-
-<title>Blog | Ocean Kalra</title>
-<meta name="description" content="Artificial intelligence is growing fast and is changing not just technology but also how people think and feel. As AI becomes more than a tool and starts to think and work with us it changes how we think, be creative and make choices. We need skills like good judgment, understanding ourselves, and working with others. People trust AI when it seems competent, is clear about how it works, and shares our values. At the time big language models are helping researchers learn more about how our minds work, showing that our understanding, memory and reasoning come from patterns, not just rules. AI that responds to our emotions can help us communicate and feel better. It also makes us wonder about getting too dependent on it and being our true selves. All these changes are also making us think about what it means to be smart, creative or skilled when machines can do some of that work too. The goal of working with AI is to make humans better by making things easier giving us knowledge and helping us understand ourselves. The future will depend on how humans and AI work together not just, on how smart machines are. AI should actually, help Make the People Great Again! Until next time." />
-
+<title><!-- BLOG TITLE HERE --> | Ocean Kalra</title>
 
 <style>
+/* Color System */
 :root {
   --bg: #f4f9ff;
   --card: #ffffff;
   --text: #000000;
   --accent: #5b7cff;
+  --soft: #eef4ff;
 }
-
 
 body.dark {
   --bg: #101522;
   --card: #1a2033;
   --text: #ffffff;
+  --soft: #222a44;
 }
 
-
+/* Base */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  line-height: 1.65;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-/* Buttons */
+/* Fixed Buttons */
 #homeBtn,
 #themeToggle {
   position: fixed;
   top: 20px;
+  z-index: 1000;
   background: var(--accent);
   color: white;
   border: none;
   padding: 10px 14px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
 }
-
 
 #homeBtn { left: 20px; }
 #themeToggle { right: 20px; }
 
-
-.main {
-  background: var(--card);
-  padding: 60px 40px;
-  border-radius: 14px;
+/* Header */
+header {
+  padding: 110px 20px 50px;
   text-align: center;
+  background: linear-gradient(180deg, #6fa8ff, #dbe9ff);
+}
+
+header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+header p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+/* Tag Styling */
+.tags {
+  margin-top: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--soft);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-right: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Blog Container */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--card);
+  padding: 50px 30px;
+  border-radius: 14px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-
-.main h1 {
-  margin-bottom: 10px;
-  font-size: 36px;
+.blog-content p {
+  font-size: 18px;
+  margin-bottom: 28px;
 }
 
+/* Reading Progress Bar */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 2000;
+}
 
-.main p {
-  font-size: 18px;
-  opacity: 0.85;
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
 }
 </style>
 </head>
 
-
 <body>
 
+<div id="progressBar"></div>
 
-<button id="homeBtn" onclick="window.location.href='index.html'">← Back to Home</button>
+<button id="homeBtn" onclick="window.location.href='../index.html'">← Back to Home</button>
 <button id="themeToggle">🌙</button>
 
+<header>
+  <h1><!-- BLOG TITLE HERE --></h1>
+  <p><!-- SHORT SUBHEADLINE HERE --></p>
 
-<div class="main">
-  <h1>The Future Potential of Humans & AI</h1>
-  <p>Artificial intelligence is growing fast and is changing not just technology but also how people think and feel. As AI becomes more than a tool and starts to think and work with us, it reshapes how we reason, create, and make choices. This shift demands skills like good judgment, self-understanding, and the ability to collaborate effectively. People tend to trust AI when it appears competent, communicates clearly, and aligns with their values.</p>
-<p>At the same time, large language models are helping researchers learn more about how our minds work, showing that understanding, memory, and reasoning often emerge from patterns rather than strict rules. AI that responds to human emotion can support communication and well-being, but it also raises questions about dependency and authenticity.</p>
-<p>These changes are pushing us to rethink what it means to be smart, creative, or skilled when machines can now perform parts of that work. The goal of working with AI is to elevate human potential—making tasks easier, expanding access to knowledge, and helping us understand ourselves more deeply. The future will depend on how humans and AI work together, not just on how smart machines become. AI should ultimately help Make the People Great Again! Until next time.</p>
-</div>
-<style>
-  /* Disable text selection */
-  body {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE10+/Edge */
-    user-select: none;         /* Standard */
-  }
-</style>
+  <div class="tags">
+    <!-- Example tags -->
+    <!-- <span class="tag">AI</span> -->
+    <!-- <span class="tag">Psychology</span> -->
+    <!-- <span class="tag">Learning</span> -->
+  </div>
+</header>
+
+<main>
+  <div class="blog-content">
+    <!-- BLOG CONTENT GOES HERE -->
+  </div>
+</main>
+
+<footer>
+  © 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising
+</footer>
 
 <script>
+/* Dark Mode Toggle */
 const themeToggle = document.getElementById("themeToggle");
-
-
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
   themeToggle.textContent =
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
-</script>
 
-<style>
-  /* Disable text selection */
-  body {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE10+/Edge */
-    user-select: none;         /* Standard */
-  }
-</style>
+/* Reading Progress Bar */
+const progressBar = document.getElementById("progressBar");
 
-<script>
-  // Disable right-click context menu
-  document.addEventListener('contextmenu', event => event.preventDefault());
-
-  // Disable copy keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+A and Cmd on Mac)
-  document.addEventListener('keydown', event => {
-    if ((event.ctrlKey || event.metaKey) && 
-        (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
-      event.preventDefault();
-    }
-  });
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  progressBar.style.width = progress + "%";
+});
 </script>
 
 </body>
-
 </html>
 
 
