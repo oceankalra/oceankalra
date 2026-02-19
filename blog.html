@@ -165,6 +165,29 @@ footer {
   © 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising
 </footer>
 
+<style>
+  /* Disable text selection */
+  body {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+/Edge */
+    user-select: none;         /* Standard */
+  }
+</style>
+
+<script>
+  // Disable right-click context menu
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Disable copy keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+A and Cmd on Mac)
+  document.addEventListener('keydown', event => {
+    if ((event.ctrlKey || event.metaKey) && 
+        (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
+      event.preventDefault();
+    }
+  });
+</script>
+  
 <script>
 /* Dark Mode Toggle */
 const themeToggle = document.getElementById("themeToggle");
@@ -187,4 +210,5 @@ window.addEventListener("scroll", () => {
 
 </body>
 </html>
+
 
