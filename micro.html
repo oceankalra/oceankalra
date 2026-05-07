@@ -6,6 +6,7 @@
 
 <title>Byte-Sized Writing | Ocean Kalra</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg: #f4f9ff;
@@ -28,7 +29,7 @@ body {
   color: var(--text);
   line-height: 1.75;
   font-family: 'Source Serif Pro', serif;
-  font-size: 18px; /* ← change this to adjust paragraph size */
+  font-size: 18px;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -91,7 +92,17 @@ h2 {
   color: var(--accent);
   margin-top: 40px;
 }
+
+/* ⭐ FIXED FOOTER — this was missing */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
+}
 </style>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2322341954267310"
      crossorigin="anonymous"></script>
 </head>
@@ -109,39 +120,44 @@ h2 {
 <main>
   <h2>Reality Check</h2>
   <p>Sheets and books feel personal when they're physical, but become professional the moment they hit the digital ground. <em>In practice, each form acts as a placeholder where these roles can be exchanged based on how they're used.</em> Data can be automated in the virtual space, but automation hasn't fully leaped into the physical realm.<b> It's the tension between reality accommodating digitization and virtual reality becoming ideal.</b></p>
+
   <h2>Vanishing in Humans vs AI</h2>
-  <p>Vanishing online isn't the same as vanishing in AI.</p>    
-<p>The former is about the absence of signal, nothing remains for a system or a person to process, so no learning occurs.</p>  
-<p>The latter is about the attenuation of a signal, as the signal moves through the network, it shrinks to the point where it can no longer teach the model effectively, causing ineffective learning.</p>   
-<p>Put simply:</p>   
-<p>The first emphasizes moving on with no signal at all. The second emphasizes a signal moving through layers and becoming too weak to matter.</p>
+  <p>Vanishing online isn't the same as vanishing in AI.</p>
+  <p>The former is about the absence of signal, nothing remains for a system or a person to process, so no learning occurs.</p>
+  <p>The latter is about the attenuation of a signal, as the signal moves through the network, it shrinks to the point where it can no longer teach the model effectively, causing ineffective learning.</p>
+  <p>Put simply:</p>
+  <p>The first emphasizes moving on with no signal at all. The second emphasizes a signal moving through layers and becoming too weak to matter.</p>
+
   <h2>AI Brain Fry: The Brunt of Speed</h2>
- <p>The mental exhaustion comes from switching between multiple tasks constantly; even when each task requires less effort, the speed still takes a toll. <em> But you matter more than the tools you use</em>, so stay the star contributor of your work and let AI support your thinking, not take the lead. </p>
+  <p>The mental exhaustion comes from switching between multiple tasks constantly; even when each task requires less effort, the speed still takes a toll. <em>But you matter more than the tools you use</em>, so stay the star contributor of your work and let AI support your thinking, not take the lead.</p>
 </main>
 
 <footer>
   <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
   <p>
-    <a href="Privacy Policy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
+    <a href="privacy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
     <a href="index.html" style="color:white; text-decoration:none;">Home</a>
   </p>
 </footer>
 
 <script>
+/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
-
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
   themeToggle.textContent =
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
 
-/* Disable copy, right-click, shortcuts */
+/* Disable right-click */
 document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* Disable copy, cut, paste */
 document.addEventListener('copy', e => e.preventDefault());
 document.addEventListener('cut', e => e.preventDefault());
 document.addEventListener('paste', e => e.preventDefault());
 
+/* Disable keyboard shortcuts */
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) &&
       (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
@@ -151,8 +167,4 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 </body>
-
 </html>
-
-
-
