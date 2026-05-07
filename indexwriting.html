@@ -34,6 +34,10 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  /* Disable dragging */
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 a {
@@ -100,9 +104,21 @@ ul li a {
   color: var(--accent);
   font-weight: bold;
 }
+
+/* Footer — FIXED */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
+}
 </style>
+
+<!-- Google Ads (you already had this) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2322341954267310"
      crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -122,15 +138,17 @@ ul li a {
     <li><a href="thought.html">Thought for the Week</a></li>
   </ul>
 </main>
+
 <footer>
-  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
+  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising</p>
   <p>
-    <a href="Privacy Policy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
+    <a href="privacy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
     <a href="index.html" style="color:white; text-decoration:none;">Home</a>
   </p>
 </footer>
 
 <script>
+/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
 
 themeToggle.onclick = () => {
@@ -139,12 +157,15 @@ themeToggle.onclick = () => {
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
 
-/* Disable copy, right-click, shortcuts */
+/* Disable right-click */
 document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* Disable copy, cut, paste */
 document.addEventListener('copy', e => e.preventDefault());
 document.addEventListener('cut', e => e.preventDefault());
 document.addEventListener('paste', e => e.preventDefault());
 
+/* Disable keyboard shortcuts */
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) &&
       (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
@@ -154,8 +175,5 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 </body>
-
 </html>
-
-
 
