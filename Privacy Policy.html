@@ -28,6 +28,16 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
+
+  /* Disable text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Disable dragging */
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 a {
@@ -164,7 +174,7 @@ footer {
 <p>External platforms supporting site operations include:</p>
 <ul>
   <li>Gumroad – digital product delivery and payment processing</li>
-  <li>Etsy (future) – digital product sales and payments</li>
+  <li>Etsy (future) – digital product sales</li>
   <li>Calendly – scheduling advisory sessions</li>
   <li>Email service provider (future) – optional newsletters or updates</li>
 </ul>
@@ -206,48 +216,32 @@ footer {
 
 <h2>13. Contact</h2>
 <p>For privacy‑related questions or requests:<br><strong>advisor@oceankalra.com</strong></p>
-<script>
-  // Disable right-click context menu
-  document.addEventListener('contextmenu', event => event.preventDefault());
 
-  // Disable copy keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+A and Cmd on Mac)
-  document.addEventListener('keydown', event => {
-    if ((event.ctrlKey || event.metaKey) && 
-        (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
-      event.preventDefault();
-    }
-  });
-</script>
 </main>
-  
+
 <footer>
-  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
-  <p>
-    <a href="Privacy Policy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
-    <a href="index.html" style="color:white; text-decoration:none;">Home</a>
-  </p>
+  © 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising
 </footer>
 
 <script>
+/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
-
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
   themeToggle.textContent =
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
-</script>
-  <script>
-  // Disable right-click context menu
-  document.addEventListener('contextmenu', event => event.preventDefault());
 
-  // Disable copy keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+A and Cmd on Mac)
-  document.addEventListener('keydown', event => {
-    if ((event.ctrlKey || event.metaKey) && 
-        (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
-      event.preventDefault();
-    }
-  });
+/* Disable right-click */
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+/* Disable copy shortcuts */
+document.addEventListener('keydown', event => {
+  if ((event.ctrlKey || event.metaKey) &&
+      (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
+    event.preventDefault();
+  }
+});
 </script>
 
 </body>
