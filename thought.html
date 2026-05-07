@@ -6,6 +6,7 @@
 
 <title>Thought for the Week | Ocean Kalra</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg: #f4f9ff;
@@ -35,7 +36,6 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-
 
 a {
   text-decoration: none;
@@ -92,7 +92,17 @@ h2 {
   color: var(--accent);
   margin-top: 40px;
 }
+
+/* ⭐ FIXED FOOTER — this was missing */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
+}
 </style>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2322341954267310"
      crossorigin="anonymous"></script>
 </head>
@@ -115,29 +125,31 @@ h2 {
 </main>
 
 <footer>
-  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
+  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI Advising</p>
   <p>
-    <a href="Privacy Policy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
+    <a href="privacy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
     <a href="index.html" style="color:white; text-decoration:none;">Home</a>
   </p>
 </footer>
 
-
 <script>
+/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
-
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
   themeToggle.textContent =
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
 
-/* Disable copy, right-click, shortcuts */
+/* Disable right-click */
 document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* Disable copy, cut, paste */
 document.addEventListener('copy', e => e.preventDefault());
 document.addEventListener('cut', e => e.preventDefault());
 document.addEventListener('paste', e => e.preventDefault());
 
+/* Disable keyboard shortcuts */
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) &&
       (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
@@ -147,9 +159,4 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 </body>
-
 </html>
-
-
-
-
