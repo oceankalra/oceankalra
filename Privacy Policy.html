@@ -208,7 +208,19 @@ footer {
 <p>For privacy‑related questions or requests:<br><strong>advisor@oceankalra.com</strong></p>
 
 </main>
+<script>
+  // Disable right-click context menu
+  document.addEventListener('contextmenu', event => event.preventDefault());
 
+  // Disable copy keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+A and Cmd on Mac)
+  document.addEventListener('keydown', event => {
+    if ((event.ctrlKey || event.metaKey) && 
+        (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
+      event.preventDefault();
+    }
+  });
+</script>
+  
 <footer>
   <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
   <p>
