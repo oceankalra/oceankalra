@@ -225,24 +225,29 @@ footer {
 </footer>
 
 <script>
-/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
+
+// 1. Load saved theme
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+  themeToggle.textContent = "☀️";
+} else {
+  themeToggle.textContent = "🌙";
+}
+
+// 2. Toggle + save theme
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
-  themeToggle.textContent =
-    document.body.classList.contains("dark") ? "☀️" : "🌙";
-};
 
-/* Disable right-click */
-document.addEventListener('contextmenu', event => event.preventDefault());
-
-/* Disable copy shortcuts */
-document.addEventListener('keydown', event => {
-  if ((event.ctrlKey || event.metaKey) &&
-      (event.key === 'c' || event.key === 'x' || event.key === 'a')) {
-    event.preventDefault();
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    themeToggle.textContent = "☀️";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeToggle.textContent = "🌙";
   }
-});
+};
 </script>
 
 </body>
