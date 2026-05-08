@@ -192,6 +192,19 @@ document.addEventListener('keydown', function (e) {
   }
 });
 </script>
+<script>
+document.getElementById("monthFilter").addEventListener("change", function() {
+  const selected = this.value;
+  const posts = document.querySelectorAll(".post");
 
+  posts.forEach(post => {
+    if (selected === "all" || post.dataset.month === selected) {
+      post.style.display = "block";
+    } else {
+      post.style.display = "none";
+    }
+  });
+});
+</script>
 </body>
 </html>
