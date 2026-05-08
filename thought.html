@@ -35,6 +35,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 a {
@@ -78,7 +81,7 @@ header p {
   font-size: 18px;
 }
 
-/* Main content card */
+/* Main card */
 main {
   max-width: 900px;
   margin: 40px auto;
@@ -88,12 +91,28 @@ main {
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-h2 {
-  color: var(--accent);
-  margin-top: 40px;
+/* Posts */
+.post {
+  margin-bottom: 30px;
+  font-size: 20px;
 }
 
-/* ⭐ FIXED FOOTER — this was missing */
+/* Filter */
+.filter-box {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.filter-box select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--card);
+  color: var(--text);
+  font-size: 16px;
+}
+
+/* FOOTER — unchanged */
 footer {
   margin-top: 50px;
   text-align: center;
@@ -118,10 +137,35 @@ footer {
 </header>
 
 <main>
-  <p>🌿AI is a source, but its fuel is the water and energy we feed it.</p>
-  <p>🌿AI maps you, and you master its mapping, while ethics draw the line.</p>
-  <p>🌿At times when a combination isn't a given, choosing between meaning and time becomes a tough call.</p>
-  <p>🌿Algorithms think; automation acts. One must precede the other.</p>
+
+  <!-- FILTER -->
+  <div class="filter-box">
+    <label for="monthFilter"><strong>Filter by Month:</strong></label>
+    <select id="monthFilter">
+      <option value="all">All Thoughts</option>
+      <option value="may-2026">May 2026</option>
+      <option value="mar-2026">March 2026</option>
+    </select>
+  </div>
+
+  <!-- MAY THOUGHT -->
+  <article class="post" data-month="may-2026">
+    🌿AI is a source, but its fuel is the water and energy we feed it.
+  </article>
+
+  <!-- MARCH THOUGHTS -->
+  <article class="post" data-month="mar-2026">
+    🌿AI maps you, and you master its mapping, while ethics draw the line.
+  </article>
+
+  <article class="post" data-month="mar-2026">
+    🌿At times when a combination isn't a given, choosing between meaning and time becomes a tough call.
+  </article>
+
+  <article class="post" data-month="mar-2026">
+    🌿Algorithms think; automation acts. One must precede the other.
+  </article>
+
 </main>
 
 <footer>
@@ -156,6 +200,20 @@ document.addEventListener('keydown', function (e) {
       (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
     e.preventDefault();
   }
+});
+
+/* FILTER SCRIPT */
+document.getElementById("monthFilter").addEventListener("change", function() {
+  const selected = this.value;
+  const posts = document.querySelectorAll(".post");
+
+  posts.forEach(post => {
+    if (selected === "all" || post.dataset.month === selected) {
+      post.style.display = "block";
+    } else {
+      post.style.display = "none";
+    }
+  });
 });
 </script>
 
