@@ -35,6 +35,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 a {
@@ -93,15 +96,13 @@ h2 {
   margin-top: 40px;
 }
 
-/* ⭐ FIXED FOOTER — this was missing */
-footer {
-  margin-top: 50px;
-  text-align: center;
-  padding: 20px;
-  background: var(--accent);
-  color: white;
+/* Posts */
+.post {
+  margin-bottom: 40px;
 }
-  .filter-box {
+
+/* Filter */
+.filter-box {
   margin-bottom: 30px;
   font-size: 18px;
 }
@@ -113,6 +114,15 @@ footer {
   background: var(--card);
   color: var(--text);
   font-size: 16px;
+}
+
+/* FOOTER — unchanged per your request */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
 }
 </style>
 
@@ -131,33 +141,43 @@ footer {
 </header>
 
 <main>
+
+  <!-- FILTER -->
   <div class="filter-box">
-  <label for="monthFilter"><strong>Filter by Month:</strong></label>
-  <select id="monthFilter">
-    <option value="all">All Posts</option>
-    <option value="may-2026">May 2026</option>
-    <option value="apr-2026">April 2026</option>
-    <option value="mar-2026">March 2026</option>
-  </select>
-</div>
+    <label for="monthFilter"><strong>Filter by Month:</strong></label>
+    <select id="monthFilter">
+      <option value="all">All Posts</option>
+      <option value="may-2026">May 2026</option>
+      <option value="apr-2026">April 2026</option>
+      <option value="mar-2026">March 2026</option>
+    </select>
+  </div>
 
-   <h2>Reality Check</h2>
+  <!-- POST 1 -->
+  <h2>Reality Check</h2>
   <article class="post" data-month="apr-2026">
-  <p>Sheets and books feel personal when they're physical, but become professional the moment they hit the digital ground. <em>In practice, each form acts as a placeholder where these roles can be exchanged based on how they're used.</em> Data can be automated in the virtual space, but automation hasn't fully leaped into the physical realm.<b> It's the tension between reality accommodating digitization and virtual reality becoming ideal.</b></p>
+    <p>Sheets and books feel personal when they're physical, but become professional the moment they hit the digital ground. <em>In practice, each form acts as a placeholder where these roles can be exchanged based on how they're used.</em> Data can be automated in the virtual space, but automation hasn't fully leaped into the physical realm.<b> It's the tension between reality accommodating digitization and virtual reality becoming ideal.</b></p>
+  </article>
 
+  <!-- POST 2 -->
   <h2>Vanishing in Humans vs AI</h2>
   <article class="post" data-month="mar-2026">
-  <p>Vanishing online isn't the same as vanishing in AI.</p>
-  <p>The former is about the absence of signal, nothing remains for a system or a person to process, so no learning occurs.</p>
-  <p>The latter is about the attenuation of a signal, as the signal moves through the network, it shrinks to the point where it can no longer teach the model effectively, causing ineffective learning.</p>
-  <p>Put simply:</p>
-  <p>The first emphasizes moving on with no signal at all. The second emphasizes a signal moving through layers and becoming too weak to matter.</p>
+    <p>Vanishing online isn't the same as vanishing in AI.</p>
+    <p>The former is about the absence of signal, nothing remains for a system or a person to process, so no learning occurs.</p>
+    <p>The latter is about the attenuation of a signal, as the signal moves through the network, it shrinks to the point where it can no longer teach the model effectively, causing ineffective learning.</p>
+    <p>Put simply:</p>
+    <p>The first emphasizes moving on with no signal at all. The second emphasizes a signal moving through layers and becoming too weak to matter.</p>
+  </article>
 
+  <!-- POST 3 -->
   <h2>AI Brain Fry: The Brunt of Speed</h2>
   <article class="post" data-month="mar-2026">
-  <p>The mental exhaustion comes from switching between multiple tasks constantly; even when each task requires less effort, the speed still takes a toll. <em>But you matter more than the tools you use</em>, so stay the star contributor of your work and let AI support your thinking, not take the lead.</p>
+    <p>The mental exhaustion comes from switching between multiple tasks constantly; even when each task requires less effort, the speed still takes a toll. <em>But you matter more than the tools you use</em>, so stay the star contributor of your work and let AI support your thinking, not take the lead.</p>
+  </article>
+
 </main>
 
+<!-- FOOTER (unchanged) -->
 <footer>
   <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
   <p>
@@ -191,8 +211,8 @@ document.addEventListener('keydown', function (e) {
     e.preventDefault();
   }
 });
-</script>
-<script>
+
+/* FILTER SCRIPT */
 document.getElementById("monthFilter").addEventListener("change", function() {
   const selected = this.value;
   const posts = document.querySelectorAll(".post");
@@ -206,5 +226,6 @@ document.getElementById("monthFilter").addEventListener("change", function() {
   });
 });
 </script>
+
 </body>
 </html>
