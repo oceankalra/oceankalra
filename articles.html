@@ -195,30 +195,31 @@ footer {
 </footer>
 
 <script>
-/* Theme toggle */
 const themeToggle = document.getElementById("themeToggle");
+
+// 1. Load saved theme
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+  themeToggle.textContent = "☀️";
+} else {
+  themeToggle.textContent = "🌙";
+}
+
+// 2. Toggle + save theme
 themeToggle.onclick = () => {
   document.body.classList.toggle("dark");
-  themeToggle.textContent =
-    document.body.classList.contains("dark") ? "☀️" : "🌙";
-};
 
-/* Disable right-click */
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-/* Disable copy, cut, paste */
-document.addEventListener('copy', e => e.preventDefault());
-document.addEventListener('cut', e => e.preventDefault());
-document.addEventListener('paste', e => e.preventDefault());
-
-/* Disable keyboard shortcuts */
-document.addEventListener('keydown', function (e) {
-  if ((e.ctrlKey || e.metaKey) &&
-      (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
-    e.preventDefault();
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    themeToggle.textContent = "☀️";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeToggle.textContent = "🌙";
   }
-});
+};
 </script>
+
 <script>
 document.getElementById("monthFilter").addEventListener("change", function() {
   const selected = this.value;
