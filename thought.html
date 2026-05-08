@@ -97,14 +97,23 @@ main {
   font-size: 20px;
 }
 
-.filter-box select {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--accent);
-  background: var(--card);
-  color: var(--text);
-  font-size: 16px;
+/* Filter — match Articles page style */
+.filter-box {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-family: Arial, sans-serif; /* ensures exact match */
 }
+
+.filter-box select {
+  font-size: 16px;
+  font-family: Arial, sans-serif; /* ensures exact match */
+  border: 1px solid #ccc; /* default browser border */
+  padding: 2px 4px; /* minimal default-like padding */
+  border-radius: 0; /* removes rounded corners */
+  background: white; /* default dropdown background */
+  color: black; /* default text color */
+}
+
 
 /* FOOTER — unchanged */
 footer {
