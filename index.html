@@ -449,21 +449,6 @@ document.addEventListener("click", e => {
     menu.classList.remove("open");
   }
 });
-<script>
-/* Menu */
-const menu = document.getElementById("sideMenu");
-const menuToggle = document.getElementById("menuToggle");
-const themeToggle = document.getElementById("themeToggle");
-
-menuToggle.onclick = e => {
-  e.stopPropagation();
-  menu.classList.toggle("open");
-};
-document.addEventListener("click", e => {
-  if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-    menu.classList.remove("open");
-  }
-});
 
 /* Theme */
 themeToggle.onclick = () => {
