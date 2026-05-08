@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Terms of Use | Ocean Kalra</title>
+
+<style>
+:root {
+  --bg: #f4f9ff;
+  --card: #ffffff;
+  --text: #000000;
+  --accent: #5b7cff;
+  --soft: #eef4ff;
+}
+
+body.dark {
+  --bg: #101522;
+  --card: #1a2033;
+  --text: #ffffff;
+  --soft: #222a44;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+
+  /* Disable text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Disable dragging */
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Buttons */
+#homeBtn,
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  z-index: 1000;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+#homeBtn { left: 20px; }
+#themeToggle { right: 20px; }
+
+/* Header */
+header {
+  padding: 110px 20px 50px;
+  text-align: center;
+  background: linear-gradient(180deg, #6fa8ff, #dbe9ff);
+}
+
+header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+header p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+/* Main Card */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--card);
+  padding: 50px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+h2 {
+  color: var(--accent);
+  margin-top: 40px;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: var(--accent);
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<button id="homeBtn" onclick="window.location.href='index.html'">← Back to Home</button>
+<button id="themeToggle">🌙</button>
+
+<header>
+  <h1>Terms of Use</h1>
+  <p>Guidelines for accessing and using oceankalra.com.</p>
+</header>
+
+<main>
+
+<p><strong>Last updated: May 2026</strong></p>
+
+<p>These Terms of Use govern access to and use of <strong>oceankalra.com</strong>, including all content, services, and digital products available through the site.</p>
+
+<h2>1. Purpose of the Website</h2>
+<p>The website provides educational content, advisory services, digital products (via OceaniaDesigns), and learning frameworks. All materials are intended for informational and educational purposes only.</p>
+
+<h2>2. The Nature of Content</h2>
+<p>Content may reference psychology, learning science, AI, communication, and the like.</p>
+
+<h2>3. Digital Products</h2>
+<p>Digital products purchased through external platforms are for personal use unless explicitly stated otherwise. Users may not:</p>
+<ul>
+  <li>Resell or redistribute materials</li>
+  <li>Modify materials for commercial use</li>
+  <li>Claim materials as original work</li>
+</ul>
+
+<h2>4. Intellectual Property</h2>
+<p>All content on oceankalra.com—including text, graphics, frameworks, and digital tools—is owned by Ocean Kalra unless otherwise credited.</p>
+
+<h2>5. Advisory Sessions</h2>
+<p>Advisory sessions are educational and strategic in nature. Outcomes vary based on individual circumstances.</p>
+
+<h2>6. Third‑Party Services</h2>
+<p>External platforms supporting site operations include:</p>
+<ul>
+  <li>Digital product delivery and payments</li>
+  <li>Scheduling</li>
+</ul>
+
+<h2>7. Website Availability</h2>
+<p>Continuous, uninterrupted access cannot be guaranteed. Content or features may be modified or discontinued at any time.</p>
+
+<h2>8. Limitation of Liability</h2>
+<p>To the fullest extent permitted by law, oceankalra.com is not liable for:</p>
+<ul>
+  <li>Direct, indirect, incidental, or consequential damages</li>
+  <li>Loss of data or profits</li>
+  <li>Reliance on website content</li>
+  <li>Issues arising from third‑party platforms</li>
+</ul>
+
+<h2>9. User Responsibilities</h2>
+<p>Users agree to:</p>
+<ul>
+  <li>Use the website lawfully</li>
+  <li>Refrain from harmful or disruptive behavior</li>
+  <li>Avoid unauthorized access attempts</li>
+  <li>Respect intellectual property rights</li>
+</ul>
+
+<h2>10. Changes to These Terms</h2>
+<p>These Terms may be updated periodically. Continued use of the website indicates acceptance of any changes.</p>
+
+<h2>11. Contact</h2>
+<p>For questions regarding these Terms:<br>
+<strong>advisor@oceankalra.com</strong></p>
+
+</main>
+
+<footer>
+  <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
+  <p>
+    <a href="privacy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
+    <a href="index.html" style="color:white; text-decoration:none;">Home</a>
+  </p>
+</footer>
+
+<script>
+/* Theme toggle */
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  themeToggle.textContent =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
+};
+
+/* Disable right-click */
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+/* Disable copy, cut, paste */
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+
+/* Disable keyboard shortcuts */
+document.addEventListener('keydown', function (e) {
+  if ((e.ctrlKey || e.metaKey) &&
+      (e.key === 'c' || e.key === 'x' || e.key === 'a')) {
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
