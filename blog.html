@@ -73,7 +73,7 @@ header p {
   font-size: 18px;
 }
 
-/* Tag Styling (this was missing!) */
+/* Tag Styling */
 .tags {
   margin-top: 20px;
 }
@@ -86,6 +86,19 @@ header p {
   margin-right: 8px;
   font-size: 14px;
   font-weight: bold;
+}
+
+/* Instagram Button */
+.follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 25px;
 }
 
 /* Video Grid */
@@ -101,6 +114,12 @@ header p {
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* Footer */
@@ -132,37 +151,54 @@ body {
 
 <header>
   <h1>Video Blog • Reels & Insights</h1>
-  <p>Short-form ideas on AI, psychology, human potential & communication.</p>
+  <p>Short-form ideas on AI & Human potential.</p>
 
   <div class="tags">
     <span class="tag">Reels</span>
     <span class="tag">AI</span>
-    <span class="tag">Psychology</span>
-    <span class="tag">Human Development</span>
+    <span class="tag">Human Potential & Development</span>
   </div>
+
+  <!-- Updated Instagram Button -->
+  <a href="https://www.instagram.com/ocean_kalra/" target="_blank" class="follow-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+         alt="Instagram" style="width:20px; height:20px;">
+    Explore my Instagram Profile
+  </a>
 </header>
 
+<hr style="border:0; height:1px; background:var(--soft); margin:0 20px;">
+
 <main>
-  <h2 style="text-align:center; margin-bottom:30px;">Latest Videos</h2>
 
-  <div class="video-grid">
+  <!-- Featured Video -->
+  <section style="max-width:700px; margin:40px auto;">
+    <h2 style="text-align:center; margin-bottom:20px;">Featured Video</h2>
 
-    <!-- Reel 1 -->
-    <div class="video-card">
-  <blockquote 
-    class="instagram-media" 
-    data-instgrm-captioned 
-    data-instgrm-permalink="https://www.instagram.com/reel/DZ_vgZ6tT6I/?igsh=cWJvZzNncWQweW5j" 
-    style="background:#FFF; border:0; margin:0 auto; max-width:540px; width:100%; padding:0;">
-  </blockquote>
-</div>
+    <div class="video-card" style="max-width:540px; margin:0 auto;">
+      <blockquote 
+        class="instagram-media" 
+        data-instgrm-permalink="https://www.instagram.com/reel/DZ_vgZ6tT6I/?igsh=cWJvZzNncWQweW5j"
+        data-instgrm-captioned="false"
+        style="background:#FFF; border:0; width:100%; padding:0;">
+      </blockquote>
+    </div>
+  </section>
 
-<script async src="https://www.instagram.com/embed.js"></script>
+  <script async src="https://www.instagram.com/embed.js"></script>
 </main>
 
 <footer>
   <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
-  <p>
+
+  <div style="margin-top:10px;">
+    <a href="https://www.instagram.com/ocean_kalra/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+           alt="Instagram" style="width:28px; height:28px;">
+    </a>
+  </div>
+
+  <p style="margin-top:10px;">
     <a href="Privacy Policy.html" style="color:white; text-decoration:none;">Privacy Policy</a> |
     <a href="Terms of Use.html" style="color:white; text-decoration:none;">Terms of Use</a> | 
     <a href="Home.html" style="color:white; text-decoration:none;">Home</a>
@@ -204,8 +240,4 @@ body {
 
 </body>
 </html>
-
-
-
-
 
