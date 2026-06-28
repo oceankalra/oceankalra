@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ocean Kalra | Research Agent</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+:root {
+  --bg: #000000;
+  --card: #11131a;
+  --text: #ffffff;
+  --accent: #5b7cff;
+  --soft: #1a1d27;
+  --border: rgba(255,255,255,0.08);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  user-select: none;
+}
+
+body * {
+  user-select: none;
+}
+
+/* SIDE PANELS */
+.side-panel {
+  position: fixed;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  background: linear-gradient(180deg, #05060a, #000000);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  gap: 22px;
+}
+
+.side-panel.right {
+  right: 0;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+.side-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.3;
+}
+
+.side-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  fill: none;
+}
+
+/* MAIN LAYOUT */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  padding-left: 140px;
+  padding-right: 140px;
+}
+
+h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #5b7cff, #ffffff, #5b7cff);
+  background-size: 1000px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 32px;
+}
+
+/* SETTINGS PANEL */
+.settings-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.settings-bar select {
+  background: #1a1d27;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* CHAT BOX */
+.chat-box {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+  min-height: 350px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  max-width: 80%;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.user {
+  background: var(--accent);
+  color: white;
+  margin-left: auto;
+}
+
+.bot {
+  background: var(--soft);
+  border: 1px solid var(--border);
+}
+
+/* INPUT AREA */
+.input-area {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--soft);
+  color: var(--text);
+  font-size: 16px;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* WELCOME ANIMATION */
+.welcome {
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TIP LINE */
+.tip-line {
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.75;
+  font-style: italic;
+  min-height: 18px;
+}
+
+/* Typing indicator */
+.typing {
+  display: inline-block;
+  padding: 10px 14px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.typing::after {
+  content: "Typing";
+  animation: dots 1.2s infinite;
+}
+
+@keyframes dots {
+  0% { content: "Typing"; }
+  33% { content: "Typing."; }
+  66% { content: "Typing.."; }
+  100% { content: "Typing..."; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LEFT PANEL -->
+<div class="side-panel left">
+  <div class="wave">
+    <svg><path d="M10 20 Q 25 5 40 20 Q 55 35 40 50 Q 25 65 10 50 Q 25 35 40 20 Q 55 5 40 20" /></svg>
+  </div>
+
+  <div class="side-icon">
+    <svg><circle cx="18" cy="18" r="9"></circle><line x1="24" y1="24" x2="32" y2="32"></line></svg>
+  </div>
+
+  <div class="side-icon">
+    <svg>
+      <rect x="8" y="8" width="22" height="26" rx="4"></rect>
+      <line x1="12" y1="16" x2="26" y2="16"></line>
+      <line x1="12" y1="22" x2="26" y2="22"></line>
+    </svg>
+  </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="side-panel right">
+  <div class="wave">
+    <svg><path d="M10 20 Q 25 5 40 20 Q 55 35 40 50 Q 25 65 10 50 Q 25 35 40 20 Q 55 5 40 20" /></svg>
+  </div>
+
+  <div class="side-icon">
+    <svg>
+      <polyline points="10,28 18,20 26,24 34,16 42,22"></polyline>
+      <line x1="10" y1="34" x2="10" y2="18"></line>
+      <line x1="10" y1="34" x2="44" y2="34"></line>
+    </svg>
+  </div>
+
+  <div class="side-icon">
+    <svg>
+      <circle cx="16" cy="14" r="3.5"></circle>
+      <circle cx="28" cy="22" r="3.5"></circle>
+      <circle cx="16" cy="30" r="3.5"></circle>
+      <line x1="16" y1="17.5" x2="28" y2="19"></line>
+      <line x1="16" y1="26.5" x2="28" y2="25"></line>
+    </svg>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Ocean Kalra | Research Agent</h1>
+  <div class="subtitle">A premium AI assistant for learning, research, and professional insight.</div>
+
+<!-- SETTINGS BAR -->
+<div class="settings-bar">
+
+  <!-- PRESET MODE -->
+  <select id="preset">
+    <option value="">Preset Mode (Optional)</option>
+    <option value="research_mode">Research Mode</option>
+    <option value="study_mode">Study Mode</option>
+    <option value="writing_mode">Writing Mode</option>
+  </select>
+
+  <!-- DEPTH -->
+  <select id="depth">
+    <option value="beginner">Beginner</option>
+    <option value="intermediate" selected>Intermediate</option>
+    <option value="advanced">Advanced</option>
+    <option value="expert">Expert</option>
+  </select>
+
+  <!-- STYLE -->
+  <select id="style">
+    <option value="concise">Concise</option>
+    <option value="detailed" selected>Detailed</option>
+    <option value="visual">Visual</option>
+    <option value="practical">Practical</option>
+    <option value="theoretical">Theoretical</option>
+  </select>
+
+  <!-- CATEGORY -->
+  <select id="category">
+    <option value="research" selected>Research</option>
+    <option value="learning">Learning</option>
+    <option value="communication">Communication</option>
+    <option value="analysis">Analysis</option>
+    <option value="writing">Writing</option>
+    <option value="productivity">Productivity</option>
+  </select>
+
+</div>
+
+<!-- CHAT BOX -->
+<div id="chat" class="chat-box">
+  <div class="message bot welcome">
+    👋 Welcome, I am your Research Agent.  
+    Use the drop-down menu above to select your expertise level, learning style, category, and preset mode. Ask anything.
+    <div class="tip-line" id="tip-line"></div>
+  </div>
+</div>
+
+<!-- INPUT -->
+<div class="input-area">
+  <input id="input" placeholder="Ask something..." />
+  <button onclick="send()">Send</button>
+</div>
+<!-- FEEDBACK BLOCK -->
+<div id="feedback-block" style="
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+">
+    <h3 style="
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 18px;
+        color: var(--text);
+        opacity: 0.9;
+    ">
+        Anonymous Feedback
+    </h3>
+
+    <textarea id="feedback-text" placeholder="Share anonymous feedback..."
+        style="
+            width: 100%;
+            height: 90px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--soft);
+            color: var(--text);
+            font-size: 14px;
+            resize: none;
+        ">
+    </textarea>
+
+    <button id="send-feedback" style="
+        margin-top: 12px;
+        width: 100%;
+        padding: 12px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    ">
+        Send Feedback
+    </button>
+</div>
+</div>
+
+<script>
+// Rotating tips
+const tips = [
+  "Tip: Try Expert + Visual for deep conceptual explanations.",
+  "Tip: Study Mode + Practical is great for learning fast.",
+  "Tip: Research Mode gives structured, analytical responses.",
+  "Tip: Writing Mode improves clarity and flow.",
+  "Tip: Visual style uses diagrams-in-words for clarity."
+];
+
+let tipIndex = 0;
+function rotateTips() {
+  const tipLine = document.getElementById("tip-line");
+  if (!tipLine) return;
+  tipLine.textContent = tips[tipIndex];
+  tipIndex = (tipIndex + 1) % tips.length;
+}
+setInterval(rotateTips, 4000);
+rotateTips();
+
+async function send() {
+  const input = document.getElementById("input");
+  const message = input.value;
+  if (!message.trim()) return;
+
+  const chat = document.getElementById("chat");
+  chat.innerHTML += `<div class='message user'>${message}</div>`;
+  input.value = "";
+
+  // Collect settings
+  const depth = document.getElementById("depth").value;
+  const style = document.getElementById("style").value;
+  const category = document.getElementById("category").value;
+  const preset = document.getElementById("preset").value;
+
+  // Add typing indicator
+  const typingId = "typing-" + Date.now();
+  chat.innerHTML += `<div id="${typingId}" class="message bot typing"></div>`;
+  chat.scrollTop = chat.scrollHeight;
+
+  const res = await fetch("https://agent-su1c.onrender.com/agent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: message,
+      depth: depth,
+      style: style,
+      category: category,
+      preset: preset
+    })
+  });
+
+  const data = await res.json();
+const reply = data.response || "No response.";
+
+document.getElementById(typingId)?.remove();
+
+chat.innerHTML += `<div class='message bot'>${marked.parse(reply)}</div>`;
+chat.scrollTop = chat.scrollHeight;
+
+}
+document.getElementById("send-feedback").onclick = async () => {
+  const feedback = document.getElementById("feedback-text").value.trim();
+
+  if (!feedback) {
+    alert("Please enter feedback before sending.");
+    return;
+  }
+
+  await fetch("https://formspree.io/f/mvzjrajk", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ feedback })
+  });
+
+  alert("Thank you! Your feedback was sent.");
+  document.getElementById("feedback-text").value = "";
+};
+
+</script>
+
+</body>
+</html>
