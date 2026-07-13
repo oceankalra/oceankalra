@@ -109,6 +109,15 @@ header p {
   margin-top: 40px;
 }
 
+  /* Reel Grid */
+.reel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+  
 .video-card {
   background: var(--card);
   padding: 15px;
@@ -171,33 +180,56 @@ body {
 
 <main>
 
-  <!-- Featured Video -->
+  <!-- Latest Reel (Top Highlight) -->
   <section style="max-width:700px; margin:40px auto;">
-    <h2 style="text-align:center; margin-bottom:20px;">Featured Video</h2>
+    <h2 style="text-align:center; margin-bottom:20px;">Latest Reel</h2>
 
     <div class="video-card" style="max-width:540px; margin:0 auto;">
       <blockquote 
         class="instagram-media" 
-        data-instgrm-permalink="https://www.instagram.com/reel/DZ_vgZ6tT6I/?igsh=cWJvZzNncWQweW5j"
+        data-instgrm-permalink="https://www.instagram.com/reel/DarE8H_NuWf/?igsh=MTlhZTNqcWV2aDR0bg=="
         data-instgrm-captioned="false"
         style="background:#FFF; border:0; width:100%; padding:0;">
       </blockquote>
     </div>
+  </section>
 
-    <h2 style="text-align:center; margin-top:50px;">Latest Reel</h2>
-    <div class="video-card" style="max-width:540px; margin:40px auto;">
-  <blockquote 
-    class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/reel/DaMTmhsNDuS/?igsh=MTBlNm83eXVsNjhjaA=="
-    data-instgrm-captioned="false"
-    style="background:#FFF; border:0; width:100%; padding:0;">
-     </blockquote>
+
+  <!-- Reel Grid (Older Reels) -->
+  <section style="max-width:1200px; margin:60px auto;">
+    <h2 style="text-align:center; margin-bottom:20px;">More Reels</h2>
+
+    <div class="reel-grid">
+
+      <!-- Reel 1 -->
+      <div class="video-card">
+        <blockquote 
+          class="instagram-media" 
+          data-instgrm-permalink="https://www.instagram.com/reel/DZ_vgZ6tT6I/?igsh=cWJvZzNncWQweW5j"
+          data-instgrm-captioned="false"
+          style="background:#FFF; border:0; width:100%; padding:0;">
+        </blockquote>
+      </div>
+
+      <!-- Reel 2 -->
+      <div class="video-card">
+        <blockquote 
+          class="instagram-media" 
+          data-instgrm-permalink="https://www.instagram.com/reel/DaMTmhsNDuS/?igsh=MTBlNm83eXVsNjhjaA=="
+          data-instgrm-captioned="false"
+          style="background:#FFF; border:0; width:100%; padding:0;">
+        </blockquote>
+      </div>
+
+      <!-- Add more reels here -->
+    
+
     </div>
-
   </section>
 
   <script async src="https://www.instagram.com/embed.js"></script>
 </main>
+
 
 <footer>
   <p>© 2026 Ocean Kalra | Public Speaking, Psychology & AI</p>
