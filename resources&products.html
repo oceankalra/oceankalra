@@ -68,6 +68,14 @@
   .section-header div { height: 1px; flex: 1; background: var(--accent); opacity: 0.2; }
 
   /* --- PRODUCT CARD --- */
+
+  .product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 40px;
+}
+
   .product-preview-card {
     max-width: 420px;
     margin: 50px auto;
@@ -208,6 +216,7 @@
   </p>
 
   <!-- ⭐ AGENT PRODUCT CARD ⭐ -->
+  <div class="product-grid">
   <div class="product-preview-card" onclick="window.open('agent_RA.html','_blank')">
     <img 
       src="Agent_Cover Card.png"
@@ -240,7 +249,7 @@
     <h3 class="product-preview-title">Metacognitive Redirection Protocol</h3>
     <p class="product-preview-sub">A minimalist, research‑backed cognitive clarity tool.</p>
   </div>
-
+</div>
 </main>
 
 <footer>
