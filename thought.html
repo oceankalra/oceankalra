@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="canonical" href="https://www.oceankalra.com/thought.html" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -9,9 +10,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Soft copy-deterrent: discourage casual selection... */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* ...but keep the things people legitimately need usable */
+input, textarea,
+a[href^="mailto:"],
+#chat, #chat *,
+.message, .message * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 /* ============================================================
    Ocean Kalra — shared design system (V2)
-   Single source of truth for tokens, layout, and components.
    ============================================================ */
 
 :root {
@@ -586,6 +603,18 @@ footer a { color: var(--brand); }
   }
 })();
 
+</script>
+<script>
+(function () {
+  // Allow copy/right-click inside form fields, email links, and the agent chat
+  var allow = function (t) {
+    return t && t.closest &&
+      t.closest('input, textarea, a[href^="mailto:"], #chat, .message');
+  };
+  document.addEventListener('contextmenu', function (e) { if (!allow(e.target)) e.preventDefault(); });
+  document.addEventListener('copy',        function (e) { if (!allow(e.target)) e.preventDefault(); });
+  document.addEventListener('cut',         function (e) { if (!allow(e.target)) e.preventDefault(); });
+})();
 </script>
 </body>
 </html>
