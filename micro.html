@@ -615,22 +615,5 @@ footer a { color: var(--brand); }
 })();
 
 </script>
-/* Soft copy-deterrent: discourage casual selection... */
-* {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-/* ...but keep the things people legitimately need usable */
-input, textarea,
-a[href^="mailto:"],
-#chat, #chat *,
-.message, .message * {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
 </body>
 </html>
