@@ -615,5 +615,17 @@ footer a { color: var(--brand); }
 })();
 
 </script>
+<script>
+(function () {
+  // Allow copy/right-click inside form fields, email links, and the agent chat
+  var allow = function (t) {
+    return t && t.closest &&
+      t.closest('input, textarea, a[href^="mailto:"], #chat, .message');
+  };
+  document.addEventListener('contextmenu', function (e) { if (!allow(e.target)) e.preventDefault(); });
+  document.addEventListener('copy',        function (e) { if (!allow(e.target)) e.preventDefault(); });
+  document.addEventListener('cut',         function (e) { if (!allow(e.target)) e.preventDefault(); });
+})();
+</script>
 </body>
 </html>
