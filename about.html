@@ -408,12 +408,71 @@ footer a { color: var(--brand); }
   <h2>Who Ocean is</h2>
   <p><strong>Ocean Kalra</strong> is an expert advisor &amp; writer specializing in public speaking, psychology, learning science, and artificial intelligence. With a strong foundation in academic research and practical experience, Ocean empowers learners, educators, and professionals to develop clearer thinking, effective learning strategies, and ethical AI use.</p>
 
-  <div class="bizcard-container">
-    <a href="Business Card.png" download>
-      <img src="Business Card.png" alt="Ocean Kalra business card" class="bizcard-img">
-    </a>
-    <p class="bizcard-note">Click to download her business card</p>
-  </div>
+  <div class="bizcard-flip-wrap">
+  <button class="bizcard-flip" id="bizcardFlip" aria-pressed="false" aria-label="Ocean Kalra business card — activate to flip">
+    <span class="bizcard-inner">
+      <span class="bizcard-face bizcard-front">
+        <img src="business_card_light.png" alt="Ocean Kalra business card" class="card-light">
+        <img src="business_card_dark.png"  alt="" aria-hidden="true" class="card-dark">
+      </span>
+      <span class="bizcard-face bizcard-back">
+        <img src="business_card_back_light.png" alt="" aria-hidden="true" class="card-light">
+        <img src="business_card_back_dark.png"  alt="" aria-hidden="true" class="card-dark">
+      </span>
+    </span>
+  </button>
+  <p class="bizcard-note">
+    <span class="flip-hint">Hover or tap to flip</span> &nbsp;·&nbsp;
+    <a href="business_card_light.png" download class="card-dl card-dl-light">Download card</a><a href="business_card_dark.png" download class="card-dl card-dl-dark">Download card</a>
+  </p>
+</div>
+
+<style>
+.bizcard-flip-wrap { text-align: center; margin: 30px 0; }
+.bizcard-flip {
+  display: inline-block; width: min(440px, 92%); aspect-ratio: 1050 / 600;
+  perspective: 1200px; background: none; border: 0; padding: 0; cursor: pointer;
+}
+.bizcard-inner {
+  position: relative; display: block; width: 100%; height: 100%;
+  transform-style: preserve-3d; transition: transform .7s cubic-bezier(.4,0,.2,1);
+}
+.bizcard-flip:hover .bizcard-inner,
+.bizcard-flip.flipped .bizcard-inner { transform: rotateY(180deg); }
+.bizcard-flip:focus-visible { outline: 2px solid var(--brand); outline-offset: 6px; border-radius: 16px; }
+.bizcard-face {
+  position: absolute; inset: 0; display: block;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-lift, 0 18px 40px -16px rgba(18,23,42,.4));
+}
+.bizcard-face img { width: 100%; height: 100%; display: block; }
+.bizcard-back { transform: rotateY(180deg); }
+.flip-hint { font-size: 13px; color: var(--muted); }
+
+/* theme swap: light faces by default, dark faces in dark mode */
+.bizcard-face .card-dark { display: none; }
+body.dark .bizcard-face .card-light { display: none; }
+body.dark .bizcard-face .card-dark { display: block; }
+.card-dl-dark { display: none; }
+body.dark .card-dl-light { display: none; }
+body.dark .card-dl-dark { display: inline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bizcard-inner { transition: none; }
+}
+</style>
+
+<script>
+(function () {
+  var b = document.getElementById('bizcardFlip');
+  if (!b) return;
+  b.addEventListener('click', function () {
+    var f = b.classList.toggle('flipped');
+    b.setAttribute('aria-pressed', f ? 'true' : 'false');
+  });
+})();
+</script>
+
 
   <p>Ocean's work focuses on how people learn, stay motivated, and make decisions in complex, AI-enhanced environments. The approach prioritizes sustainable, evidence-based strategies that honor cognitive limits and human values.</p>
 </section>
