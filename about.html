@@ -462,15 +462,15 @@ body.dark .ok-card { --c-bg:#0e1424; --c-ink:#ffffff; --c-sub:#c4cee8; --c-amber
   display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5% 7%; text-align: center;
 }
 .ok-mono { position:absolute; top:50%; left:50%; transform:translate(-50%,-52%); font-family:"Space Grotesk",sans-serif; font-weight:700; font-size: calc(var(--w) * .34); color:var(--c-mono); z-index:0; line-height:1 !important; letter-spacing:-.03em; pointer-events:none; }
-.ok-face > *:not(.ok-mono) { position: relative; z-index: 1; }
+.ok-face > *:not(.ok-mono) { position: relative; z-index: 1; flex: 0 0 auto !important; }
 .ok-eyebrow { font-family:"Inter",sans-serif; font-weight:600 !important; font-size: calc(var(--w) * .0245) !important; letter-spacing:.11em; text-transform:uppercase; color: var(--c-amber) !important; }
-.ok-name { font-family:"Space Grotesk",sans-serif; font-weight:700 !important; font-size: calc(var(--w) * .108) !important; color: var(--c-ink) !important; letter-spacing:-.02em; line-height:1 !important; margin-top: calc(var(--w) * .05) !important; }
-.ok-rule { display:block; width: calc(var(--w) * .28); height:3px; margin: calc(var(--w) * .028) auto !important; border-radius:999px; background: linear-gradient(90deg, var(--c-brand), var(--c-amber)); }
+.ok-name { font-family:"Space Grotesk",sans-serif; font-weight:700 !important; font-size: calc(var(--w) * .10) !important; color: var(--c-ink) !important; letter-spacing:-.02em; line-height:1 !important; margin-top: calc(var(--w) * .038) !important; }
+.ok-rule { display:block !important; width: calc(var(--w) * .28); height:3px !important; min-height:3px; flex:0 0 auto !important; margin: calc(var(--w) * .022) auto !important; border-radius:999px; background: linear-gradient(90deg, var(--c-brand), var(--c-amber)); }
 .ok-tag { font-family:"Inter",sans-serif; font-weight:500 !important; font-size: calc(var(--w) * .030) !important; color: var(--c-sub) !important; }
-.ok-divider { width:56%; height:1px; background: var(--c-line); margin: calc(var(--w) * .024) auto !important; }
-.ok-contact { display:flex; flex-direction:column; gap: calc(var(--w) * .019); }
+.ok-divider { width:56%; height:1px !important; min-height:1px; flex:0 0 auto !important; background: var(--c-line); margin: calc(var(--w) * .018) auto !important; }
+.ok-contact { display:flex; flex-direction:column; gap: calc(var(--w) * .015); flex:0 0 auto !important; }
 .ok-contact li { display:flex; align-items:center; justify-content:center; gap: calc(var(--w) * .018); }
-.ok-contact svg { width: calc(var(--w) * .045); height: calc(var(--w) * .045); flex:none; fill:none; stroke:var(--c-amber); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.ok-contact svg { width: calc(var(--w) * .042); height: calc(var(--w) * .042); flex:none; fill:none; stroke:var(--c-amber); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 .ok-contact svg.ok-li { fill:var(--c-amber); stroke:none; }
 .ok-contact svg.ok-li text { fill:var(--c-bg); stroke:none; font-family:"Inter",sans-serif; }
 .ok-card .ok-contact a { font-family:"Inter",sans-serif; font-size: calc(var(--w) * .0315) !important; color: var(--c-ink) !important; }
