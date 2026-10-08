@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ocean Kalra | Morein</title>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<style>
+:root {
+  --bg: #0d1016;
+  --card: #141922;
+  --soft: #1b212d;
+  --text: #eef1f7;
+  --muted: #939cb0;
+  --accent: #f2a93b;
+  --accent-ink: #231500;
+  --border: rgba(255,255,255,0.09);
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0 0 32px;
+  max-width: 52ch;
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.segmented {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+}
+.segmented button {
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 7px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.segmented button:hover { color: var(--text); }
+.segmented button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+select {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14px;
+}
+.mode-hint {
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 20px;
+  margin: 0 0 14px;
+}
+
+/* CHAT */
+.chat-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  min-height: 340px;
+  max-height: 560px;
+  overflow-y: auto;
+}
+.message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  max-width: 86%;
+  overflow-wrap: anywhere;
+}
+.message.user {
+  background: var(--accent);
+  color: var(--accent-ink);
+  margin-left: auto;
+  white-space: pre-wrap;
+}
+.message.bot {
+  background: var(--soft);
+  border: 1px solid var(--border);
+}
+.message.error {
+  border-color: rgba(255,120,120,0.5);
+}
+.message.bot > :first-child { margin-top: 0; }
+.message.bot > :last-child { margin-bottom: 0; }
+.message.bot ul, .message.bot ol { padding-left: 22px; }
+.message.bot pre { overflow-x: auto; }
+
+.starters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.starters button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.starters button:hover { border-color: var(--accent); }
+
+.typing { color: var(--muted); font-style: italic; }
+.typing::after { content: "Thinking"; animation: dots 1.2s infinite; }
+@keyframes dots {
+  0% { content: "Thinking"; }
+  33% { content: "Thinking."; }
+  66% { content: "Thinking.."; }
+  100% { content: "Thinking..."; }
+}
+
+/* INPUT */
+.input-area { display: flex; gap: 10px; margin-top: 16px; }
+.input-area input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--soft);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+.btn {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+/* FEEDBACK */
+.feedback {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 36px;
+}
+.feedback h2 { font-size: 17px; margin: 0 0 12px; font-weight: 600; }
+.feedback textarea {
+  width: 100%;
+  height: 90px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--soft);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  resize: none;
+}
+.feedback .btn { width: 100%; margin-top: 12px; padding: 12px; }
+
+.tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.tools button {
+  background: transparent; color: var(--text); border: 1px solid var(--border);
+  border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 14px; cursor: pointer;
+}
+.tools button:hover { border-color: var(--accent); }
+.tools button[aria-pressed="true"] { border-color: var(--accent); background: rgba(242,169,59,.14); color: var(--accent); }
+.tools button { position: relative; overflow: hidden; }
+.tools button::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 40%;
+  background: var(--accent); transform: translateX(-100%); opacity: 0;
+}
+.tools button:hover::after, .tools button:focus-visible::after { opacity: 1; animation: sweep 1.1s linear infinite; }
+@keyframes sweep { to { transform: translateX(260%); } }
+.tool-tip { color: var(--accent); font-size: 13px; min-height: 22px; margin: -4px 0 12px; }
+.tool-tip.typing-on::after { content: "|"; margin-left: 1px; animation: blink .8s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .tools button:hover::after, .tools button:focus-visible::after, .tool-tip.typing-on::after { animation: none; }
+}
+.message.wide { max-width: 100%; }
+.message.viz { padding: 10px; }
+.message.viz svg { width: 100%; height: auto; display: block; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.actions button {
+  background: transparent; color: var(--muted); border: 1px solid var(--border);
+  border-radius: 8px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer;
+}
+.actions button:hover { color: var(--text); border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .typing::after { animation: none; } }
+@media (max-width: 560px) {
+  h1 { font-size: 32px; }
+  .container { padding-top: 28px; }
+  .message { max-width: 94%; }
+}
+</style>
+</head>
+<body>
+<main class="container">
+  <h1>Morein</h1>
+  <p class="subtitle">Think it through, pick a direction, and leave with your next step. Built by Ocean Kalra.</p>
+
+  <div class="controls">
+    <div class="segmented" id="modes" role="group" aria-label="Thinking mode">
+      <button type="button" data-mode="" aria-pressed="true">Auto</button>
+      <button type="button" data-mode="decision" aria-pressed="false">Decide</button>
+      <button type="button" data-mode="reflection" aria-pressed="false">Reflect</button>
+      <button type="button" data-mode="action" aria-pressed="false">Act</button>
+    </div>
+    <select id="style" aria-label="Response length">
+      <option value="">Default length</option>
+      <option value="concise">Concise</option>
+      <option value="detailed">Detailed</option>
+    </select>
+  </div>
+  <p class="mode-hint" id="mode-hint"></p>
+
+  <div class="tools" id="tools" role="group" aria-label="Tasks">
+    <button type="button" data-tool="document" aria-pressed="false">Write a document</button>
+    <button type="button" data-tool="matrix" aria-pressed="false">Priority matrix</button>
+    <button type="button" data-tool="roadmap" aria-pressed="false">Roadmap image</button>
+    <button type="button" data-tool="proscons" aria-pressed="false">Pros &amp; cons</button>
+  </div>
+  <p class="tool-tip" id="tool-tip" aria-hidden="true"></p>
+
+  <div id="chat" class="chat-box" aria-live="polite">
+    <div class="message bot">
+      <p>Hi, I'm Morein. Tell me what's on your plate, pick a mode, or choose a task above to get a document or an image you can download.</p>
+      <div class="starters" id="starters">
+        <button type="button">Help me prioritize my week</button>
+        <button type="button">I can't decide between two options</button>
+        <button type="button">Turn this idea into steps</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input id="input" placeholder="What are you working on?" autocomplete="off" />
+    <button id="send-btn" class="btn" type="button">Send</button>
+  </div>
+  <button id="clear-btn" class="link-btn" type="button">Clear conversation</button>
+
+  <section class="feedback">
+    <h2>Anonymous feedback</h2>
+    <textarea id="feedback-text" placeholder="Share anonymous feedback..."></textarea>
+    <button id="send-feedback" class="btn" type="button">Send feedback</button>
+  </section>
+</main>
+
+<script>
+const API_BASE = "https://agent-su1c.onrender.com";
+const chat = document.getElementById("chat");
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send-btn");
+const styleSel = document.getElementById("style");
+const hint = document.getElementById("mode-hint");
+const initialChat = chat.innerHTML;
+
+const HINTS = {
+  "": "Auto: Morein picks the approach that fits what you say.",
+  decision: "Decide: options, trade-offs, and a recommendation.",
+  reflection: "Reflect: one focused question, then structure.",
+  action: "Act: the next one to three concrete steps."
+};
+let mode = "";
+let sending = false;
+
+// Wake the backend (Render cold start) while the user reads the page.
+fetch(`${API_BASE}/health`).catch(() => {});
+
+function setMode(value) {
+  mode = value;
+  document.querySelectorAll("#modes button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.mode === value)));
+  hint.textContent = HINTS[value];
+}
+document.getElementById("modes").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (b) setMode(b.dataset.mode);
+});
+setMode("");
+
+function addMessage(classes, content = "", markdown = false) {
+  const el = document.createElement("div");
+  el.className = `message ${classes}`;
+  if (markdown) el.innerHTML = DOMPurify.sanitize(marked.parse(content));
+  else el.textContent = content;
+  chat.appendChild(el);
+  chat.scrollTop = chat.scrollHeight;
+  return el;
+}
+
+let tool = "";
+const TOOLS = {
+  document: { ph: "What should the document cover? e.g. a launch plan for my store",
+    pre: "Write a complete, well-structured document in Markdown that I can share as is. Start with a single # title, then ## sections with short paragraphs or lists. Output only the document. Request: " },
+  matrix: { ph: "List your tasks, e.g. emails, taxes, gym, redesign site", viz: "matrix",
+    pre: 'Sort the tasks below into an Eisenhower matrix. Reply with ONLY a JSON object in a ```json fence, shaped {"title":"","do":[],"schedule":[],"delegate":[],"drop":[]}. Use at most 4 items per list, each under 8 words. Tasks: ' },
+  roadmap: { ph: "What goal do you want a step-by-step roadmap for?", viz: "roadmap",
+    pre: 'Turn the goal below into a roadmap. Reply with ONLY a JSON object in a ```json fence, shaped {"title":"","steps":[{"when":"","label":""}]}. Use 4 to 7 steps, "when" under 4 words (e.g. "Day 1"), labels under 10 words. Goal: ' },
+  proscons: { ph: "Describe the decision and your options", viz: "proscons",
+    pre: 'Compare the options in the decision below. Reply with ONLY a JSON object in a ```json fence, shaped {"title":"","options":[{"name":"","pros":[],"cons":[]}],"pick":""}. Use 2 or 3 options, at most 4 short points per list, and one sentence for "pick" with your recommendation. Decision: ' }
+};
+
+function setTool(v) {
+  tool = v;
+  document.querySelectorAll("#tools button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.tool === v)));
+  input.placeholder = v ? TOOLS[v].ph : "What are you working on?";
+}
+document.getElementById("tools").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  setTool(tool === b.dataset.tool ? "" : b.dataset.tool);
+  input.focus();
+});
+
+/* ---- Hover tips: typed lines that cycle while an option is hovered or focused ---- */
+const TIPS = {
+  document: ["Turns your idea into a full, structured document.", "Save it as Word, Markdown, or PDF in one click."],
+  matrix: ["Sorts your tasks by urgency and importance.", "Shows what to do now, schedule, delegate, or drop."],
+  roadmap: ["Turns a goal into a numbered, step-by-step path.", "Download it as an image to keep or share."],
+  proscons: ["Lays your options side by side.", "Ends with a clear recommendation."]
+};
+const tipEl = document.getElementById("tool-tip");
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let tipRun = 0;
+function stopTip() { tipRun++; tipEl.textContent = ""; tipEl.classList.remove("typing-on"); }
+function showTip(key) {
+  const run = ++tipRun, lines = TIPS[key];
+  let li = 0;
+  const next = () => {
+    if (run !== tipRun) return;
+    const line = lines[li++ % lines.length];
+    if (reduceMotion) { tipEl.textContent = line; return setTimeout(next, 2800); }
+    tipEl.classList.add("typing-on");
+    let i = 0;
+    const type = () => {
+      if (run !== tipRun) return;
+      tipEl.textContent = line.slice(0, ++i);
+      if (i < line.length) setTimeout(type, 22);
+      else { tipEl.classList.remove("typing-on"); setTimeout(next, 1800); }
+    };
+    type();
+  };
+  next();
+}
+const toolsEl = document.getElementById("tools");
+toolsEl.addEventListener("mouseover", e => { const b = e.target.closest("button"); if (b) showTip(b.dataset.tool); });
+toolsEl.addEventListener("focusin", e => { const b = e.target.closest("button"); if (b) showTip(b.dataset.tool); });
+toolsEl.addEventListener("mouseleave", stopTip);
+toolsEl.addEventListener("focusout", stopTip);
+
+/* ---- Images: built in the browser as SVG from the model's JSON ---- */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const list = a => (Array.isArray(a) ? a : []).map(String);
+function wrap(text, max) {
+  const lines = []; let cur = "";
+  for (const w of String(text).split(/\s+/)) {
+    if ((cur + " " + w).trim().length > max && cur) { lines.push(cur); cur = w; }
+    else cur = (cur + " " + w).trim();
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+const head = (w, h) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" font-family="Helvetica, Arial, sans-serif"><rect width="${w}" height="${h}" rx="18" fill="#141922"/>`;
+const t = (x, y, lines, size, fill, weight = 400, lh = size * 1.35) =>
+  lines.map((l, i) => `<text x="${x}" y="${y + i * lh}" font-size="${size}" fill="${fill}" font-weight="${weight}">${esc(l)}</text>`).join("");
+
+function matrixSVG(d) {
+  const W = 800, qw = 364, qh = 262, H = 654;
+  const qs = [["Do now", "do", "#f2a93b", 30, 84], ["Schedule", "schedule", "#7fb4ff", 406, 84],
+              ["Delegate", "delegate", "#9be0b0", 30, 362], ["Drop", "drop", "#8d96ab", 406, 362]];
+  let s = head(W, H) + t(30, 52, [d.title || "Priority matrix"], 26, "#eef1f7", 700);
+  for (const [name, key, col, x, y] of qs) {
+    s += `<rect x="${x}" y="${y}" width="${qw}" height="${qh}" rx="14" fill="#1b212d" stroke="${col}" stroke-opacity=".5"/>` + t(x + 20, y + 34, [name], 18, col, 700);
+    let yy = y + 68;
+    for (const item of list(d[key]).slice(0, 4)) {
+      const ls = wrap(item, 40).slice(0, 2);
+      s += `<circle cx="${x + 24}" cy="${yy - 5}" r="3" fill="${col}"/>` + t(x + 36, yy, ls, 15, "#dfe4ef", 400, 20);
+      yy += ls.length * 20 + 8;
+    }
+  }
+  return s + "</svg>";
+}
+
+function roadmapSVG(d) {
+  const steps = (Array.isArray(d.steps) ? d.steps : []).slice(0, 7);
+  if (!steps.length) throw new Error("no steps");
+  const W = 800, row = 78, H = 120 + steps.length * row;
+  let s = head(W, H) + t(30, 52, [d.title || "Roadmap"], 26, "#eef1f7", 700);
+  s += `<line x1="64" y1="106" x2="64" y2="${106 + (steps.length - 1) * row}" stroke="#2c3546" stroke-width="3"/>`;
+  steps.forEach((st, i) => {
+    const y = 106 + i * row;
+    s += `<circle cx="64" cy="${y}" r="14" fill="#f2a93b"/><text x="64" y="${y + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="#231500">${i + 1}</text>`;
+    s += t(100, y - 3, [String(st.when || "")], 14, "#f2a93b", 700) + t(100, y + 19, wrap(st.label || "", 62).slice(0, 2), 17, "#eef1f7", 500, 22);
+  });
+  return s + "</svg>";
+}
+
+function prosconsSVG(d) {
+  const opts = (Array.isArray(d.options) ? d.options : []).slice(0, 3);
+  if (!opts.length) throw new Error("no options");
+  const W = 800, gap = 16, n = opts.length, cw = (W - 60 - gap * (n - 1)) / n, maxc = Math.floor((cw - 50) / 7.8);
+  const cols = opts.map(o => {
+    const rows = [];
+    list(o.pros).slice(0, 4).forEach(p => rows.push(["+", "#9be0b0", wrap(p, maxc).slice(0, 3)]));
+    list(o.cons).slice(0, 4).forEach(c => rows.push(["\u2212", "#ff9a8a", wrap(c, maxc).slice(0, 3)]));
+    return { name: String(o.name || ""), rows };
+  });
+  const h = Math.max(...cols.map(c => 64 + c.rows.reduce((a, r) => a + r[2].length * 19 + 10, 0)));
+  const pick = wrap(d.pick || "", 78).slice(0, 3);
+  const H = 84 + h + 24 + (pick.length ? 36 + pick.length * 22 : 0) + 6;
+  let s = head(W, H) + t(30, 52, [d.title || "Pros and cons"], 26, "#eef1f7", 700);
+  cols.forEach((c, i) => {
+    const x = 30 + i * (cw + gap);
+    s += `<rect x="${x}" y="84" width="${cw}" height="${h}" rx="14" fill="#1b212d" stroke="#2c3546"/>` + t(x + 18, 118, wrap(c.name, maxc).slice(0, 1), 17, "#eef1f7", 700);
+    let yy = 150;
+    for (const [m, col, ls] of c.rows) {
+      s += `<text x="${x + 18}" y="${yy}" font-size="15" font-weight="700" fill="${col}">${m}</text>` + t(x + 36, yy, ls, 14, "#dfe4ef", 400, 19);
+      yy += ls.length * 19 + 10;
+    }
+  });
+  if (pick.length) {
+    const y = 84 + h + 24;
+    s += `<rect x="30" y="${y}" width="740" height="${20 + pick.length * 22 + 10}" rx="12" fill="rgba(242,169,59,.12)" stroke="#f2a93b" stroke-opacity=".6"/>` + t(50, y + 30, pick, 16, "#f2a93b", 600, 22);
+  }
+  return s + "</svg>";
+}
+const BUILDERS = { matrix: matrixSVG, roadmap: roadmapSVG, proscons: prosconsSVG };
+
+function parseJSON(text) {
+  const m = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  return JSON.parse(m ? m[1] : text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
+}
+function saveBlob(blob, name) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function downloadPNG(svg, name) {
+  const img = new Image();
+  const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+  img.onload = () => {
+    const c = document.createElement("canvas");
+    c.width = img.width * 2; c.height = img.height * 2;
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    URL.revokeObjectURL(url);
+    c.toBlob(b => saveBlob(b, `morein-${name}.png`), "image/png");
+  };
+  img.src = url;
+}
+
+/* ---- Documents: export any reply ---- */
+const slug = md => ((md.match(/^#\s+(.+)$/m) || [])[1] || "morein-document").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "morein-document";
+const docHTML = md => `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Morein document</title><style>body{font-family:Calibri,Arial,sans-serif;line-height:1.5;max-width:720px;margin:40px auto;color:#111}h1,h2,h3{line-height:1.2}</style></head><body>${DOMPurify.sanitize(marked.parse(md))}</body></html>`;
+function addActions(el, md) {
+  const bar = document.createElement("div");
+  bar.className = "actions";
+  [["Copy", b => navigator.clipboard.writeText(md).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }).catch(() => {})],
+   ["Save .md", () => saveBlob(new Blob([md], { type: "text/markdown" }), slug(md) + ".md")],
+   ["Save Word", () => saveBlob(new Blob([docHTML(md)], { type: "application/msword" }), slug(md) + ".doc")],
+   ["Print / PDF", () => {
+     const w = window.open("", "_blank");
+     if (!w) return alert("Allow pop-ups to print or save as PDF.");
+     w.document.write(docHTML(md)); w.document.close(); w.focus(); w.print();
+   }]
+  ].forEach(([label, fn]) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = label;
+    b.addEventListener("click", () => fn(b));
+    bar.appendChild(b);
+  });
+  el.appendChild(bar);
+}
+
+function renderReply(text, activeTool) {
+  const viz = activeTool && TOOLS[activeTool].viz;
+  if (viz) {
+    try {
+      const svg = BUILDERS[viz](parseJSON(text));
+      const el = addMessage("bot wide viz");
+      el.innerHTML = svg;
+      const bar = document.createElement("div");
+      bar.className = "actions";
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = "Download image";
+      b.addEventListener("click", () => downloadPNG(svg, viz));
+      bar.appendChild(b); el.appendChild(bar);
+      chat.scrollTop = chat.scrollHeight;
+    } catch (e) {
+      addMessage("bot error", "I couldn't turn that into an image. Add a few more details and try again.");
+    }
+    return;
+  }
+  addActions(addMessage("bot", text, true), text);
+}
+
+async function send() {
+  if (sending) return;
+  const message = input.value.trim();
+  if (!message) return;
+
+  sending = true;
+  sendBtn.disabled = true;
+  document.getElementById("starters")?.remove();
+  addMessage("user", message);
+  input.value = "";
+  const activeTool = tool;
+  setTool("");
+  const typing = addMessage("bot typing");
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+
+  try {
+    const res = await fetch(`${API_BASE}/morein-agent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({ message: activeTool ? TOOLS[activeTool].pre + message : message, mode: mode || null, style: styleSel.value || null })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    typing.remove();
+    renderReply(data.response || "No response.", activeTool);
+  } catch (err) {
+    typing.remove();
+    addMessage("bot error", err.name === "AbortError"
+      ? "That took too long. The server may be waking up. Send your message again."
+      : "Morein couldn't respond. Check your connection and send again.");
+  } finally {
+    clearTimeout(timeout);
+    sending = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+
+sendBtn.addEventListener("click", send);
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+});
+
+document.getElementById("starters").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  input.value = b.textContent;
+  input.focus();
+});
+
+document.getElementById("clear-btn").addEventListener("click", () => {
+  chat.innerHTML = initialChat;
+  document.getElementById("starters").addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (b) { input.value = b.textContent; input.focus(); }
+  });
+});
+
+document.getElementById("send-feedback").addEventListener("click", async e => {
+  const btn = e.currentTarget;
+  const box = document.getElementById("feedback-text");
+  const feedback = box.value.trim();
+  if (!feedback) return alert("Enter your feedback before sending.");
+
+  btn.disabled = true;
+  try {
+    const res = await fetch("https://formspree.io/f/mvzjrajk", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ feedback })
+    });
+    if (!res.ok) throw new Error();
+    alert("Thank you. Your feedback was sent.");
+    box.value = "";
+  } catch {
+    alert("Feedback didn't send. Try again.");
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
